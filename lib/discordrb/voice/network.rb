@@ -64,6 +64,7 @@ module Discordrb::Voice
       message = @socket.recv(70)
       ip = message[4..-3].delete("\0")
       port = message[-2..-1].to_i
+      port = message[-2..-1].unpack("S>").first
       [ip, port]
     end
 
